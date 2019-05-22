@@ -16,10 +16,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/ping")
-    public String ping(){
-        return "ping";
-    }
 
     @GetMapping("/users")
     /**
