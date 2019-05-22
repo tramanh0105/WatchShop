@@ -10,5 +10,5 @@ public interface ArtikelRepo extends CrudRepository<Artikel, Integer> {
     /**
      * Provide convenient methods for ArtikelService to query Database
      */
-     List<Artikel> findArtikelsByBeschreibung(String beschreibung);
+//     List<Artikel> findArtikelsByBeschreibung(String beschreibung);
 }

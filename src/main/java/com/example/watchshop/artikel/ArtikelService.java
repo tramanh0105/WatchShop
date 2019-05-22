@@ -25,9 +25,9 @@ public class ArtikelService {
     }
 
     //find articles by beschreibung
-    public List<Artikel> findByBeschreibung(String beschreibung) {
-        return this.artikelRepo.findArtikelsByBeschreibung(beschreibung);
-    }
+//    public List<Artikel> findByBeschreibung(String beschreibung) {
+//        return this.artikelRepo.findArtikelsByBeschreibung(beschreibung);
+//    }
 
     //find aricle by aricleID
     public Artikel findById(int id){

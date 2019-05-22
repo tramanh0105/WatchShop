@@ -16,23 +16,25 @@ public class ArtikelController {
     }
 
     @GetMapping("/articles/ping")
-    public String artikelTest(){
+    public String artikelTest() {
         return "ping";
     }
+
     //get all articles back
     @GetMapping("artikels")
-    public List<Artikel> getArtikels(){
+    public List<Artikel> getArtikels() {
         return this.artikelService.getArtikels();
     }
+
     //find article by bezeichnung
-    @GetMapping("/artikel/{bezeichnung}")
-    public List<Artikel> getArtikelsByBezeichnung(@PathVariable String bezeichnung){
-        return this.artikelService.findByBeschreibung(bezeichnung);
-    }
+//    @GetMapping("/artikels/{bezeichnung}")
+//    public List<Artikel> getArtikelsByBezeichnung(@PathVariable String bezeichnung){
+//        return this.artikelService.findByBeschreibung(bezeichnung);
+//    }
     //find article by ID
-    @GetMapping("artikel/{articleId}")
-    public Artikel getArtikelByID(@PathVariable int id){
-       return this.artikelService.findById(id);
+    @GetMapping("artikels/{artikelId}")
+    public Artikel getArtikelByID(@PathVariable int artikelId) {
+        return this.artikelService.findById(artikelId);
     }
 
 
