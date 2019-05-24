@@ -89,19 +89,23 @@ public class SeedingService {
         standorts.add("ESS");
         Random ran = new Random();
 
-        for (int i = 0; i < 10; i++ ){
-            int index = ran.nextInt(4);
-            this.lagers.add(new Lager(standorts.get(index)));
+        for (int i = 0; i < 10; i++) {
+            if (ran.nextInt(10) >= 5) {
+                int index = ran.nextInt(4);
+                this.lagers.add(new Lager(standorts.get(index)));
+            }
         }
         this.lagerRepo.saveAll(lagers);
     }
 
-    public void createLagerHasArtikel(){
-        for(Artikel artikel : artikels){
-            for(Lager lager : lagers){
+    public void createLagerHasArtikel() {
+        for (Artikel artikel : artikels) {
+            for (Lager lager : lagers) {
                 Random ran = new Random();
-                int bestand = ran.nextInt(100);
-                this.lagerHasArtikels.add(new LagerHasArtikel(artikel,lager,bestand));
+                if (ran.nextInt(10) >= 5) {
+                    int bestand = ran.nextInt(100);
+                    this.lagerHasArtikels.add(new LagerHasArtikel(artikel, lager, bestand));
+                }
             }
         }
         this.lagerHasArtikelRepo.saveAll(this.lagerHasArtikels);

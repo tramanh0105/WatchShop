@@ -1,6 +1,5 @@
 package com.example.watchshop.lagerHasArtikel;
 
-import com.example.watchshop.lager.Lager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class LagerHasArtikelController {
     /**
      * Create new LagerHasArtikel
      */
-    @PostMapping("/lagers/{lagerId}/bestand")
+    @PostMapping("/lagers/{lagerId}/{bestand}")
     public LagerHasArtikel createLagerHasArtikel(@PathVariable int artikelId, @PathVariable int lagerId, @PathVariable int bestand) {
         return this.lagerHasArtikelService.createLagerHasArtikel(artikelId, lagerId, bestand);
     }
@@ -35,7 +34,7 @@ public class LagerHasArtikelController {
     /**
      * Update new value for bestand
      */
-    @PutMapping("/lagers/{lagerId}/bestand")
+    @PutMapping("/lagers/{lagerId}/{bestand}")
     public LagerHasArtikel updateBestand(@PathVariable int artikelId, @PathVariable int lagerId, @PathVariable int bestand) {
         return this.lagerHasArtikelService.updateBestand(artikelId, lagerId, bestand);
     }

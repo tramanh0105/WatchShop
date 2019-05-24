@@ -13,8 +13,11 @@ public class LagerHasArtikelService {
     private LagerHasArtikelRepo lagerHasArtikelRepo;
     private ArtikelRepo artikelRepo;
     private LagerRepo lagerRepo;
-    public LagerHasArtikelService(LagerHasArtikelRepo lagerHasArtikelRepo) {
+
+    public LagerHasArtikelService(LagerHasArtikelRepo lagerHasArtikelRepo, ArtikelRepo artikelRepo, LagerRepo lagerRepo) {
         this.lagerHasArtikelRepo = lagerHasArtikelRepo;
+        this.artikelRepo = artikelRepo;
+        this.lagerRepo = lagerRepo;
     }
 
     public List<LagerHasArtikel> getAllLagerHasArtikelByArtikelId(int artikelId) {

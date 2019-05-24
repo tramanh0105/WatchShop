@@ -15,7 +15,7 @@ public class LagerController {
 
 
     //get all the existed warehouses
-    @GetMapping("/lagers/")
+    @GetMapping("/lagers")
     public List<Lager> getAllLagers(){
         return this.lagerService.getAllLager();
     }

@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LagerHasArtikelRepo extends CrudRepository<LagerHasArtikel,Integer> {
+public interface LagerHasArtikelRepo extends CrudRepository<LagerHasArtikel, Integer> {
     List<LagerHasArtikel> findAllByArtikel(Artikel artikel);
+
     LagerHasArtikel findByArtikelAndLager(Artikel artikel, Lager lager);
 }
