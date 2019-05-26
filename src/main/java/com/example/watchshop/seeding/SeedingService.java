@@ -2,6 +2,8 @@ package com.example.watchshop.seeding;
 
 import com.example.watchshop.artikel.Artikel;
 import com.example.watchshop.artikel.ArtikelRepo;
+import com.example.watchshop.bestellung.Bestellung;
+import com.example.watchshop.bestellung.BestellungRepo;
 import com.example.watchshop.lager.Lager;
 import com.example.watchshop.lager.LagerRepo;
 import com.example.watchshop.lagerHasArtikel.LagerHasArtikel;
@@ -12,7 +14,10 @@ import com.example.watchshop.warenkorb.Warenkorb;
 import com.example.watchshop.warenkorb.WarenkorbRepo;
 import org.springframework.stereotype.Service;
 
+import java.io.RandomAccessFile;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class SeedingService {
@@ -21,19 +26,22 @@ public class SeedingService {
     private WarenkorbRepo warenkorbRepo;
     private LagerRepo lagerRepo;
     private LagerHasArtikelRepo lagerHasArtikelRepo;
+    private BestellungRepo bestellungRepo;
 
     private List<Artikel> artikels = new ArrayList<>();
     private List<User> users = new ArrayList<>();
     private List<Warenkorb> warenkorbs = new ArrayList<>();
     private List<Lager> lagers = new ArrayList<>();
     private List<LagerHasArtikel> lagerHasArtikels = new ArrayList<>();
+    private List<Bestellung> bestellungs = new ArrayList<>();
 
-    public SeedingService(ArtikelRepo artikelRepo, UserRepo userRepo, WarenkorbRepo warenkorbRepo, LagerRepo lagerRepo, LagerHasArtikelRepo lagerHasArtikelRepo) {
+    public SeedingService(ArtikelRepo artikelRepo, UserRepo userRepo, WarenkorbRepo warenkorbRepo, LagerRepo lagerRepo, LagerHasArtikelRepo lagerHasArtikelRepo, BestellungRepo bestellungRepo) {
         this.artikelRepo = artikelRepo;
         this.userRepo = userRepo;
         this.warenkorbRepo = warenkorbRepo;
         this.lagerRepo = lagerRepo;
         this.lagerHasArtikelRepo = lagerHasArtikelRepo;
+        this.bestellungRepo = bestellungRepo;
     }
 
     public void createUsers() {
@@ -111,6 +119,29 @@ public class SeedingService {
         this.lagerHasArtikelRepo.saveAll(this.lagerHasArtikels);
     }
 
+    public void createBestellungs() {
+        /**
+         * create random date for bestelldatum
+         */
+
+        for (User user : users) {
+            Random ran = new Random();
+            if (ran.nextInt(10) > 5) {
+                LocalDate startDate = LocalDate.of(2012, 1, 1); //start date
+                long start = startDate.toEpochDay();
+
+                LocalDate endDate = LocalDate.now(); //end date
+                long end = endDate.toEpochDay();
+
+                long randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
+                LocalDate date = LocalDate.ofEpochDay(randomEpochDay);
+                String datum = date.toString();
+                this.bestellungs.add(new Bestellung(user, datum));
+            }
+        }
+        this.bestellungRepo.saveAll(this.bestellungs);
+    }
+
     public void seeding() {
         /**
          * Create fake data and save to database
@@ -121,5 +152,6 @@ public class SeedingService {
         this.createWarenkorbs();
         this.createLagers();
         this.createLagerHasArtikel();
+        this.createBestellungs();
     }
 }
