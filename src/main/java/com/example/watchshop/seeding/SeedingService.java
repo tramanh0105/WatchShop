@@ -2,6 +2,8 @@ package com.example.watchshop.seeding;
 
 import com.example.watchshop.artikel.Artikel;
 import com.example.watchshop.artikel.ArtikelRepo;
+import com.example.watchshop.bestellposition.Bestellposition;
+import com.example.watchshop.bestellposition.BestellpositionRepo;
 import com.example.watchshop.bestellung.Bestellung;
 import com.example.watchshop.bestellung.BestellungRepo;
 import com.example.watchshop.lager.Lager;
@@ -27,6 +29,7 @@ public class SeedingService {
     private LagerRepo lagerRepo;
     private LagerHasArtikelRepo lagerHasArtikelRepo;
     private BestellungRepo bestellungRepo;
+    private BestellpositionRepo bestellpositionRepo;
 
     private List<Artikel> artikels = new ArrayList<>();
     private List<User> users = new ArrayList<>();
@@ -34,14 +37,16 @@ public class SeedingService {
     private List<Lager> lagers = new ArrayList<>();
     private List<LagerHasArtikel> lagerHasArtikels = new ArrayList<>();
     private List<Bestellung> bestellungs = new ArrayList<>();
+    private List<Bestellposition> bestellpositions = new ArrayList<>();
 
-    public SeedingService(ArtikelRepo artikelRepo, UserRepo userRepo, WarenkorbRepo warenkorbRepo, LagerRepo lagerRepo, LagerHasArtikelRepo lagerHasArtikelRepo, BestellungRepo bestellungRepo) {
+    public SeedingService(ArtikelRepo artikelRepo, UserRepo userRepo, WarenkorbRepo warenkorbRepo, LagerRepo lagerRepo, LagerHasArtikelRepo lagerHasArtikelRepo, BestellungRepo bestellungRepo, BestellpositionRepo bestellpositionRepo) {
         this.artikelRepo = artikelRepo;
         this.userRepo = userRepo;
         this.warenkorbRepo = warenkorbRepo;
         this.lagerRepo = lagerRepo;
         this.lagerHasArtikelRepo = lagerHasArtikelRepo;
         this.bestellungRepo = bestellungRepo;
+        this.bestellpositionRepo = bestellpositionRepo;
     }
 
     public void createUsers() {
@@ -142,6 +147,19 @@ public class SeedingService {
         this.bestellungRepo.saveAll(this.bestellungs);
     }
 
+    public void createBestellposition (){
+        for(Bestellung bestell : bestellungs){
+            for(Artikel artikel : artikels){
+                Random ran = new Random();
+                if(ran.nextInt(10)>5){
+                    Bestellposition bestellposition = new Bestellposition(bestell,artikel,ran.nextInt(15));
+                    this.bestellpositions.add(bestellposition);
+                }
+            }
+        }
+        this.bestellpositionRepo.saveAll(this.bestellpositions);
+    }
+
     public void seeding() {
         /**
          * Create fake data and save to database
@@ -153,5 +171,6 @@ public class SeedingService {
         this.createLagers();
         this.createLagerHasArtikel();
         this.createBestellungs();
+        this.createBestellposition();
     }
 }
