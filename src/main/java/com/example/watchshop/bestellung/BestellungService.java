@@ -2,6 +2,7 @@ package com.example.watchshop.bestellung;
 
 
 import com.example.watchshop.bestellposition.Bestellposition;
+import com.example.watchshop.bestellposition.BestellpositionRepo;
 import com.example.watchshop.user.User;
 import com.example.watchshop.user.UserRepo;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,13 @@ import java.util.List;
 public class BestellungService {
     private BestellungRepo bestellungRepo;
     private UserRepo userRepo;
+    private BestellpositionRepo bestellpositionRepo;
 
-    public BestellungService(BestellungRepo bestellungRepo, UserRepo userRepo) {
+    public BestellungService(BestellungRepo bestellungRepo, UserRepo userRepo, BestellpositionRepo bestellpositionRepo) {
         this.bestellungRepo = bestellungRepo;
         this.userRepo = userRepo;
+        this.bestellpositionRepo = bestellpositionRepo;
+
     }
 
     /**
@@ -69,20 +73,26 @@ public class BestellungService {
      */
     public Bestellung updateBestellung(int bestellungId) {
         Bestellung bestellung = this.bestellungRepo.findById(bestellungId).get();
-        BestellungStatus status =bestellung.getBestellstatus().changeState();
+        BestellungStatus status = bestellung.getBestellstatus().changeState();
         bestellung.setBestellstatus(status);
         return this.bestellungRepo.save(bestellung);
 
     }
 
     /**
-     * Delete Bestellung by BestellungId
+     * Delete Bestellung by BestellungId and delete all the bestellpostitons with identical bestellungId
+     *
      * @param bestellungId
      * @return
      */
     public Bestellung deleteBestellung(int bestellungId) {
         Bestellung bestellung = this.bestellungRepo.findById(bestellungId).get();
+        List<Bestellposition> list = this.bestellpositionRepo.findAllByBestellung(bestellung);
+        for (Bestellposition bestell : list) {
+            this.bestellpositionRepo.delete(bestell);
+        }
         this.bestellungRepo.delete(bestellung);
+
         return bestellung;
 
     }

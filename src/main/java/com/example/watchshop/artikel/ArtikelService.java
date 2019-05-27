@@ -33,4 +33,14 @@ public class ArtikelService {
     public Artikel findById(int id){
         return this.artikelRepo.findById(id).get();
     }
+
+    /**
+     * Delete Artikel by Id and its association
+     * @param artikelId
+     */
+    public Artikel deleteArtikel(int artikelId) {
+        Artikel artikel = this.artikelRepo.findById(artikelId).get();
+        this.artikelRepo.delete(artikel);
+        return artikel;
+    }
 }

@@ -44,6 +44,7 @@ public class BestellungController {
     @DeleteMapping("/bestellungs/{bestellungId}")
     public Bestellung deleteBestellung(@PathVariable int bestellungId){
         return this.bestellungService.deleteBestellung(bestellungId);
+
     }
 
 

@@ -14,7 +14,7 @@ public class Warenkorb {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Artikel artikel;
 
     private int anzahl;

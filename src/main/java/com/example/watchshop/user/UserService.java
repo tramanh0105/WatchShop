@@ -1,5 +1,7 @@
 package com.example.watchshop.user;
 
+import com.example.watchshop.warenkorb.Warenkorb;
+import com.example.watchshop.warenkorb.WarenkorbRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public UserDTO dao2dto(User user){
+    public UserDTO dao2dto(User user) {
         /**
          * Map a user DAO object to a user DTO object
          */
@@ -34,7 +36,7 @@ public class UserService {
     }
 
     public List<UserDTO> getUsers() {
-        List<User> users = (List<User>)this.userRepo.findAll();
+        List<User> users = (List<User>) this.userRepo.findAll();
         List<UserDTO> userDTOS = new ArrayList<>();
         users.forEach(user -> userDTOS.add(this.dao2dto(user)));
 
@@ -60,6 +62,6 @@ public class UserService {
     public UserDTO deleteUser(int userId) {
         User user = this.userRepo.findById(userId).get();
         this.userRepo.deleteById(userId);
-        return this.dao2dto(user);
+            return this.dao2dto(user);
     }
 }
