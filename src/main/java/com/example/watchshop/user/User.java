@@ -1,9 +1,8 @@
 package com.example.watchshop.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.watchshop.adresse.Adresse;
+
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -21,6 +20,8 @@ public class User {
     private String phoneNumer;
     private String name;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Adresse adresse;
 
     public User() {
     }

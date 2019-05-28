@@ -18,6 +18,7 @@ public class Adresse {
     private String stadt;
 
     @OneToOne
+    @MapsId
     private User user;
 
     public Adresse() {}
