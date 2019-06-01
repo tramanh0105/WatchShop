@@ -1,5 +1,7 @@
 package com.example.watchshop.seeding;
 
+import com.example.watchshop.adresse.Adresse;
+import com.example.watchshop.adresse.AdresseRepo;
 import com.example.watchshop.artikel.Artikel;
 import com.example.watchshop.artikel.ArtikelRepo;
 import com.example.watchshop.bestellposition.Bestellposition;
@@ -30,6 +32,7 @@ public class SeedingService {
     private LagerHasArtikelRepo lagerHasArtikelRepo;
     private BestellungRepo bestellungRepo;
     private BestellpositionRepo bestellpositionRepo;
+    private AdresseRepo adresseRepo;
 
     private List<Artikel> artikels = new ArrayList<>();
     private List<User> users = new ArrayList<>();
@@ -39,6 +42,7 @@ public class SeedingService {
     private List<Bestellung> bestellungs = new ArrayList<>();
     private List<Bestellposition> bestellpositions = new ArrayList<>();
 
+
     public SeedingService(ArtikelRepo artikelRepo, UserRepo userRepo, WarenkorbRepo warenkorbRepo, LagerRepo lagerRepo, LagerHasArtikelRepo lagerHasArtikelRepo, BestellungRepo bestellungRepo, BestellpositionRepo bestellpositionRepo) {
         this.artikelRepo = artikelRepo;
         this.userRepo = userRepo;
@@ -47,6 +51,7 @@ public class SeedingService {
         this.lagerHasArtikelRepo = lagerHasArtikelRepo;
         this.bestellungRepo = bestellungRepo;
         this.bestellpositionRepo = bestellpositionRepo;
+
     }
 
     public void createUsers() {
@@ -159,6 +164,7 @@ public class SeedingService {
         }
         this.bestellpositionRepo.saveAll(this.bestellpositions);
     }
+
 
     public void seeding() {
         /**

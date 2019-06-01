@@ -2,10 +2,12 @@ package com.example.watchshop.bestellposition;
 
 import com.example.watchshop.artikel.Artikel;
 import com.example.watchshop.bestellung.Bestellung;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
 @Entity
+
 public class Bestellposition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

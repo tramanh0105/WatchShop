@@ -1,6 +1,7 @@
 package com.example.watchshop.bestellung;
 
 import com.example.watchshop.user.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;

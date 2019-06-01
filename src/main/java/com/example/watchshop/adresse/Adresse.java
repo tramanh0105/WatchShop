@@ -1,6 +1,8 @@
 package com.example.watchshop.adresse;
 
 import com.example.watchshop.user.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import javax.persistence.*;
 
 @Entity
