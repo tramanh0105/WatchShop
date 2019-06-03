@@ -30,7 +30,6 @@ public class LagerHasArtikelController {
     public LagerHasArtikel createLagerHasArtikel(@PathVariable int artikelId, @PathVariable int lagerId, @PathVariable int bestand) {
         return this.lagerHasArtikelService.createLagerHasArtikel(artikelId, lagerId, bestand);
     }
-
     /**
      * Update new value for bestand
      */

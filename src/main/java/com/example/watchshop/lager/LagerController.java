@@ -16,23 +16,35 @@ public class LagerController {
 
     //get all the existed warehouses
     @GetMapping("/lagers")
-    public List<Lager> getAllLagers(){
+    public List<Lager> getAllLagers() {
         return this.lagerService.getAllLager();
     }
 
     @GetMapping("/lagers/{lagerId}")
-    public Lager getLager(@PathVariable int lagerId){
+    public Lager getLager(@PathVariable int lagerId) {
         /**
          * Get the warehouse by id
          */
         return this.lagerService.getLager(lagerId);
 
     }
+
     /**
      * Create new Lager
      */
     @PostMapping("/lagers")
-    public Lager createLager(@RequestBody Lager lager){
+    public Lager createLager(@RequestBody Lager lager) {
         return this.lagerService.createLager(lager);
+    }
+
+
+    @PutMapping("/lagers/{lagerId}")
+    public Lager updateLager(@PathVariable int lagerId, @RequestBody Lager newLager) {
+        return this.lagerService.updateLager(lagerId, newLager);
+    }
+
+    @DeleteMapping("/lagers/{lagerId}")
+    public Lager deleteLager(@PathVariable int lagerId){
+        return this.lagerService.deleteLager(lagerId);
     }
 }
