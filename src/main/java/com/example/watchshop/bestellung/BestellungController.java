@@ -46,7 +46,4 @@ public class BestellungController {
         return this.bestellungService.deleteBestellung(bestellungId);
 
     }
-
-
-
 }

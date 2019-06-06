@@ -6,7 +6,6 @@ public class UserDTO {
      */
     private int id;
     private String benutzerName;
-    private String passwort;
     private String email;
     private String geburtsdatum;
     private String phoneNumer;
@@ -15,10 +14,9 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(int id, String benutzerName, String passwort, String email, String geburtsdatum, String phoneNumer, String name) {
+    public UserDTO(int id, String benutzerName, String email, String geburtsdatum, String phoneNumer, String name) {
         this.id = id;
         this.benutzerName = benutzerName;
-        this.passwort = passwort;
         this.email = email;
         this.geburtsdatum = geburtsdatum;
         this.phoneNumer = phoneNumer;
@@ -41,13 +39,6 @@ public class UserDTO {
         this.benutzerName = benutzerName;
     }
 
-    public String getPasswort() {
-        return passwort;
-    }
-
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
-    }
 
     public String getEmail() {
         return email;

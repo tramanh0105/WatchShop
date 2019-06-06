@@ -8,4 +8,5 @@ public interface UserRepo extends CrudRepository<User, Integer> {
     /**
      * Provide convenient methods for UserService to query Database
      */
+    User findByBenutzerNameAndPasswort(String benuzerName, String password);
 }

@@ -25,7 +25,6 @@ public class UserService {
 
         UserDTO userDTO = new UserDTO();
         userDTO.setBenutzerName(user.getBenutzerName());
-        userDTO.setPasswort(user.getPasswort());
         userDTO.setEmail(user.getEmail());
         userDTO.setGeburtsdatum(user.getGeburtsdatum());
         userDTO.setId(user.getId());

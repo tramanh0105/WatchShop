@@ -9,6 +9,7 @@ import java.util.List;
 public class LagerController {
     private LagerService lagerService;
 
+
     public LagerController(LagerService lagerService) {
         this.lagerService = lagerService;
     }
