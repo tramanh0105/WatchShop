@@ -31,7 +31,7 @@ public class AdresseController {
     }
 
     @DeleteMapping("")
-    public Adresse updateAdresse(@PathVariable int userId) {
+    public Adresse deleteAdresse(@PathVariable int userId) {
         return this.adresseService.deleteAdresse(userId);
     }
 }

@@ -27,10 +27,35 @@ public class LagerService {
 
     /**
      * Create new lager
+     *
      * @param lager
      * @return
      */
     public Lager createLager(Lager lager) {
         return this.lagerRepo.save(lager);
+    }
+
+    /**
+     * update new Lager
+     *
+     * @param newLager
+     * @return
+     */
+    public Lager updateLager(int lagerId, Lager newLager) {
+        Lager oldLager = this.lagerRepo.findById(lagerId).get();
+        newLager.setId(lagerId);
+        this.lagerRepo.delete(oldLager);
+        return this.lagerRepo.save(newLager);
+    }
+
+    /**
+     * deleteLager
+     * @param lagerId
+     * @return
+     */
+    public Lager deleteLager(int lagerId) {
+        Lager deletedLager = this.lagerRepo.findById(lagerId).get();
+        this.lagerRepo.delete(deletedLager);
+        return deletedLager;
     }
 }
