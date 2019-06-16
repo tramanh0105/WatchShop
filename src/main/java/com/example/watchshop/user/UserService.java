@@ -33,6 +33,15 @@ public class UserService {
 
         return userDTO;
     }
+    public User dto2dao (UserDTO userDTO, int userId){
+        User userDAO = this.userRepo.findById(userId).get();
+        userDAO.setBenutzerName(userDTO.getBenutzerName());
+        userDAO.setEmail(userDTO.getEmail());
+        userDAO.setGeburtsdatum(userDTO.getGeburtsdatum());
+        userDAO.setPhoneNumer(userDTO.getPhoneNumer());
+        userDAO.setName(userDTO.getName());
+        return userDAO;
+    }
 
     public List<UserDTO> getUsers() {
         List<User> users = (List<User>) this.userRepo.findAll();
@@ -52,15 +61,15 @@ public class UserService {
         return this.dao2dto(user);
     }
 
-    public UserDTO updateUser(User user, int userId) {
-        user.setId(userId);
-        this.userRepo.save(user);
-        return this.dao2dto(user);
+    public UserDTO updateUser(UserDTO user, int userId) {
+        User userDAO = dto2dao(user,userId);
+        this.userRepo.save(userDAO);
+        return this.dao2dto(userDAO);
     }
 
     public UserDTO deleteUser(int userId) {
         User user = this.userRepo.findById(userId).get();
         this.userRepo.deleteById(userId);
-            return this.dao2dto(user);
+        return this.dao2dto(user);
     }
 }
