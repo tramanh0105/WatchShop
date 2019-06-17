@@ -2,6 +2,7 @@ package com.example.watchshop.warenkorb;
 
 import com.example.watchshop.artikel.Artikel;
 import com.example.watchshop.artikel.ArtikelRepo;
+import com.example.watchshop.artikel.ArtikelService;
 import com.example.watchshop.user.User;
 import com.example.watchshop.user.UserRepo;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class WarenkorbService {
     private WarenkorbRepo warenkorbRepo;
     private UserRepo userRepo;
     private ArtikelRepo artikelRepo;
+    private ArtikelService artikelService;
 
     public WarenkorbService(WarenkorbRepo warenkorbRepo, UserRepo userRepo, ArtikelRepo artikelRepo) {
         this.warenkorbRepo = warenkorbRepo;

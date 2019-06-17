@@ -67,9 +67,4 @@ public class UserService {
         return this.dao2dto(userDAO);
     }
 
-    public UserDTO deleteUser(int userId) {
-        User user = this.userRepo.findById(userId).get();
-        this.userRepo.deleteById(userId);
-        return this.dao2dto(user);
-    }
 }

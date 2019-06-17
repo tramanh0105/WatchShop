@@ -6,6 +6,7 @@ import com.example.watchshop.lagerHasArtikel.LagerHasArtikelRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ArtikelService {
     private ArtikelRepo artikelRepo;
@@ -25,7 +26,7 @@ public class ArtikelService {
     }
 
     // return all the articles back to ArtikelController
-    public List<Artikel> getArtikels(){
+    public List<Artikel> getArtikels() {
         return (List<Artikel>) this.artikelRepo.findAll();
     }
 
@@ -35,18 +36,19 @@ public class ArtikelService {
 //    }
 
     //find aricle by aricleID
-    public Artikel findById(int id){
+    public Artikel findById(int id) {
         return this.artikelRepo.findById(id).get();
     }
 
     /**
      * Delete Artikel by Id and its association
+     *
      * @param artikelId
      */
     public Artikel deleteArtikel(int artikelId) {
         Artikel artikel = this.artikelRepo.findById(artikelId).get();
-        List<LagerHasArtikel> list =this.lagerHasArtikelRepo.findAllByArtikel(artikel);
-        for(LagerHasArtikel lagerHasArtikel: list){
+        List<LagerHasArtikel> list = this.lagerHasArtikelRepo.findAllByArtikel(artikel);
+        for (LagerHasArtikel lagerHasArtikel : list) {
             this.lagerHasArtikelRepo.delete(lagerHasArtikel);
         }
         this.artikelRepo.delete(artikel);
