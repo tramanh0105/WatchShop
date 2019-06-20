@@ -27,12 +27,12 @@ public class Logger {
         return uniqueInstance;
     }
 
-    public void loginLog(UserDTO user, String date) {
+    public synchronized void  loginLog(UserDTO user, String date) {
         try {
-            System.out.println("hello");
+
             String toFile = date + ": id[" + user.getId() + "] " + user.getBenutzerName() + "\n";
             bw.write(toFile);
-            bw.close();
+            bw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

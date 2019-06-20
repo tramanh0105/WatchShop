@@ -26,9 +26,21 @@ public class AuthenticateService {
             return null;
         } else {
             UserDTO user = this.userService.dao2dto(foundUser);
-            Logger.getInstance().loginLog(user,LocalDateTime.now().toString());
+            Logger.getInstance().loginLog(user, LocalDateTime.now().toString());
             return user;
         }
     }
+
+    public UserDTO register(UserLogin userLogin) {
+        User foundUser = this.userRepo.findByBenutzerName(userLogin.getUserName());
+        // if benutzername is not existed yet, create new User and return userDTO
+        if (foundUser == null) {
+            UserDTO newUser = this.userService.createUser(new User(userLogin.getUserName(), userLogin.getPassword(), "", "", "", ""));
+            return newUser;
+        }else{
+            return null;
+        }
+    }
+
 
 }

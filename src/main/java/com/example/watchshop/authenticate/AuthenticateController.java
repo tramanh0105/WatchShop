@@ -20,4 +20,9 @@ public class AuthenticateController {
     public UserDTO login(@RequestBody UserLogin userLogin) {
         return this.authenticateService.login(userLogin);
     }
+
+    @PostMapping("/register")
+    public UserDTO register(@RequestBody UserLogin userLogin) {
+        return this.authenticateService.register(userLogin);
+    }
 }
